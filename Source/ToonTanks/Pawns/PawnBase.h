@@ -29,7 +29,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	void RotateTurret(FVector LookAtTarget);
+	void RotateTurret(FVector LookAtTarget) const;
 
 	void Fire();
 
