@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// daltonlima.com
 
 #include "ToonTanks.h"
 #include "Modules/ModuleManager.h"
