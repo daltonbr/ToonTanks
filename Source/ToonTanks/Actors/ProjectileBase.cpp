@@ -3,12 +3,13 @@
 #include "ProjectileBase.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 AProjectileBase::AProjectileBase()
 { 	
 	PrimaryActorTick.bCanEverTick = false;
 
-	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
+	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));	
 	RootComponent = ProjectileMesh;
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
@@ -20,6 +21,20 @@ AProjectileBase::AProjectileBase()
 void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
 }
 
+void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+    FVector NormalImpulse, const FHitResult& Hit)
+{
+	AActor* MyOwner = GetOwner();
+	if (MyOwner == nullptr) { return; }
+
+	if (OtherActor && OtherActor != this && OtherActor != MyOwner)
+	{
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, DamageType);
+	}
+	
+	UE_LOG(LogTemp, Warning, TEXT("Projectile Hit"));
+	Destroy();
+}
