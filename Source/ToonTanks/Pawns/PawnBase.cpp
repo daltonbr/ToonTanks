@@ -25,8 +25,7 @@ APawnBase::APawnBase()
 // Called when the game starts or when spawned
 void APawnBase::BeginPlay()
 {
-	Super::BeginPlay();
-	
+	Super::BeginPlay();	
 }
 
 // TurretMesh rotation face towards the LookAtTarget passed in from Child Classes
@@ -40,9 +39,14 @@ void APawnBase::RotateTurret(const FVector LookAtTarget) const
 
 void APawnBase::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Fire Condition Success"));
-	// Get ProjectileSpawnPoint Location && Rotation
-	// Spawn Projectile class at location firing towards Rotation.
+	if (ProjectileClass == nullptr) { return; }
+	
+	const FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
+	const FRotator SpawnRotation = ProjectileSpawnPoint->GetComponentRotation();
+	AProjectileBase* TempProjectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, SpawnLocation, SpawnRotation);
+	
+	TempProjectile->SetOwner(this);
+	TempProjectile->SetLifeSpan(6);
 }
 
 void APawnBase::HandleDestruction()
