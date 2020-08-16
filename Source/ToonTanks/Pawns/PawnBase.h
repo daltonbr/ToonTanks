@@ -14,6 +14,11 @@ class TOONTANKS_API APawnBase : public APawn
 {
 	GENERATED_BODY()
 
+public:
+	// Sets default values for this pawn's properties
+	APawnBase();
+	virtual void HandleDestruction();
+	
 private:
 	// Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -29,16 +34,10 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AProjectileBase> ProjectileClass;
 	
-public:
-	// Sets default values for this pawn's properties
-	APawnBase();
-
 protected:
 	virtual void BeginPlay() override;
 
 	void RotateTurret(FVector LookAtTarget) const;
 
 	void Fire();
-
-	virtual void HandleDestruction();
 };
