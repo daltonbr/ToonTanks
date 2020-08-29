@@ -69,5 +69,6 @@ void APawnTank::BeginPlay()
 void APawnTank::HandleDestruction()
 {
     Super::HandleDestruction();    
-    // TODO: Hide player in a separate function 
+    // TODO: Hide player in a separate function
+    Destroy();
 }

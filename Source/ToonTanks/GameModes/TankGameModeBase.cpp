@@ -47,7 +47,7 @@ void ATankGameModeBase::HandleGameStart()
     TargetTurrets = GetTargetTurretCount();
     PlayerTank = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
-    // Call Blueprint version GameStart();
+    // Blueprint version
     GameStart();
 }
 
@@ -56,6 +56,7 @@ void ATankGameModeBase::HandleGameOver(bool PlayerWon)
     UE_LOG(LogTemp, Warning, TEXT("[TankGameModeBase] HandleGameOver"));
     // See if the player has destroyed all the turrets, show win result.
     // else if turret destroyed player, show lose result.
-    // Call blueprint version GameOver(bool).
+
+    // Blueprint version
     GameOver(PlayerWon);
 }
