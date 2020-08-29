@@ -2,7 +2,6 @@
 
 
 #include "TankGameModeBase.h"
-
 #include "Kismet/GameplayStatics.h"
 #include "ToonTanks/Pawns/PawnTank.h"
 #include "ToonTanks/Pawns/PawnTurret.h"
@@ -16,7 +15,7 @@ void ATankGameModeBase::BeginPlay()
 
 void ATankGameModeBase::ActorDied(AActor* DeadActor)
 {
-    UE_LOG(LogTemp, Warning, TEXT("[TankGameModeBase] ActorDied"));
+    //UE_LOG(LogTemp, Warning, TEXT("[TankGameModeBase] ActorDied"));
     // Check what type of Actor died.
     if (DeadActor == PlayerTank)
     {
