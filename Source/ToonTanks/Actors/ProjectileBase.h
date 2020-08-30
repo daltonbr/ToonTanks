@@ -20,7 +20,7 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* ProjectileMesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UParticleSystemComponent* ParticleTrail;
+	UParticleSystemComponent* ParticleTrail;	
 
 	// Variables	
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
@@ -35,6 +35,8 @@ private:
 	USoundBase* HitSound;
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	USoundBase* LaunchSound;
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	TSubclassOf<UCameraShake> HitShake;
 	
 	//  Functions
 	UFUNCTION()
