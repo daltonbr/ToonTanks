@@ -26,6 +26,7 @@ private:
 public:	
 
 	UHealthComponent();
+	float GetHealth() const;
 
 protected:
 
