@@ -4,21 +4,25 @@
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "ToonTanks/Components/HealthComponent.h"
-#include "ToonTanks/Pawns/PawnTank.h"
-#include "Kismet/GameplayStatics.h"
 
 AProjectileBase::AProjectileBase()
 { 	
 	PrimaryActorTick.bCanEverTick = false;
 
-	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));	
+	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
+	//ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
 	RootComponent = ProjectileMesh;
-
+		
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovement->InitialSpeed = MovementSpeed;
 	ProjectileMovement->MaxSpeed = MovementSpeed;
-	InitialLifeSpan = 5.0f;
+
+	ParticleTrail = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ParticleTrail"));
+	ParticleTrail->SetupAttachment(RootComponent);	
+	
+	InitialLifeSpan = 3.0f;
 }
 
 void AProjectileBase::BeginPlay()
