@@ -4,9 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "ToonTanks/Pawns/PawnTank.h"
-
 #include "TankGameModeBase.generated.h"
+
+// Forward declarations
+class APawnTurret;
+class APawnTank;
+class APlayerControllerBase;
 
 UCLASS()
 class TOONTANKS_API ATankGameModeBase : public AGameModeBase
@@ -15,7 +18,8 @@ class TOONTANKS_API ATankGameModeBase : public AGameModeBase
 
 private:
 	APawnTank* PlayerTank;		
-	int32 TargetTurrets = 0;	
+	int32 TargetTurrets = 0;
+	APlayerControllerBase* PlayerControllerRef;
 
 	int32 GetTargetTurretCount();
 	 void HandleGameStart();

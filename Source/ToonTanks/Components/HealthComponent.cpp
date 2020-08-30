@@ -17,7 +17,7 @@ void UHealthComponent::BeginPlay()
 	Super::BeginPlay();
 
 	Health = DefaultHealth;
-	UE_LOG(LogTemp, Warning, TEXT("[UHealthComponent] Health at start: %f"), Health)
+	UE_LOG(LogTemp, Warning, TEXT("[UHealthComponent] %s spawns with %.1f HP"), *GetOwner()->GetName(), Health);
 	GameModeRef = Cast<ATankGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));	
 	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UHealthComponent::TakeDamage);	
 }
