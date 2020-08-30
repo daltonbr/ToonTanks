@@ -18,7 +18,7 @@ void APawnTurret::Tick(float DeltaTime)
 
 void APawnTurret::CheckFireCondition()
 {    
-    if (!PlayerPawn) { return; }
+    if (PlayerPawn == nullptr || PlayerPawn->GetIsPlayerAlive() == false) { return; }
     
     if (GetDistanceToPlayer() <= FireRange)
     {
@@ -26,7 +26,7 @@ void APawnTurret::CheckFireCondition()
     }
 }
 
-float APawnTurret::GetDistanceToPlayer()
+float APawnTurret::GetDistanceToPlayer() const
 {
     if (!PlayerPawn) { return 0.0f; }
 

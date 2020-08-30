@@ -32,7 +32,7 @@ private:
 	APawnTank* PlayerPawn;
 	
 	void CheckFireCondition();
-	float GetDistanceToPlayer();
+	float GetDistanceToPlayer() const;
 	
 protected:
 	
