@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "ToonTanks/Components/HealthComponent.h"
 #include "ToonTanks/Pawns/PawnTank.h"
+#include "Kismet/GameplayStatics.h"
 
 AProjectileBase::AProjectileBase()
 { 	
@@ -32,10 +33,11 @@ void AProjectileBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 	AActor* MyOwner = GetOwner();
 	if (MyOwner == nullptr) { return; }
 
+	// If the other actor ISN'T self OR Owner AND exists then apply damage
 	if (OtherActor && OtherActor != this && OtherActor != MyOwner)
 	{
-		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, DamageType);		
-	}
-		
-	Destroy();
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, DamageType);
+		UGameplayStatics::SpawnEmitterAtLocation(this, HitParticle, GetActorLocation());
+		Destroy();
+	}	
 }

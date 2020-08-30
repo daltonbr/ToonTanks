@@ -1,6 +1,7 @@
 // daltonlima.com
 
 #include "HealthComponent.h"
+#include "ToonTanks/GameModes/TankGameModeBase.h"
 
 UHealthComponent::UHealthComponent()
 {	

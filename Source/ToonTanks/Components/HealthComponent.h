@@ -4,11 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "ToonTanks/GameModes/TankGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
-
 #include "HealthComponent.generated.h"
 
+class ATankGameModeBase;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TOONTANKS_API UHealthComponent : public UActorComponent
